@@ -1,0 +1,53 @@
+<h1> *ngFor</h1>
+<div>
+    <h2>Ciudades</h2>
+    <ul>
+        <li *ngFor="let ciudad of ciudades">
+            Nombre: {{ciudad.nombre}} Codigo: {{ciudad.codigo}}
+        </li>
+    </ul>
+</div>
+<!-- {{ciudades[0].nombre}} -->
+<hr>
+
+<div *ngIf="ciudades.length===0">
+  No hay ciudades
+</div>
+
+<h1> *ngIf</h1>
+<h2>¿Tenemos mas de 3?</h2>
+<div *ngIf="ciudades.length<3; else esFalso">
+    No hay mas de 3
+</div>
+<ng-template #esFalso> 
+  Hay igual o mas de 3
+</ng-template>
+<hr>
+
+<h1>Directivas de Atributo</h1>
+<p><b>ngStyle (rojo para ciudades que empiecen con S y verde para el resto)</b></p>
+  <ul>
+    <li *ngFor="let ciudad of ciudades">
+      <div [ngStyle]="{color: ciudad.nombre[0] === 'S' ? '#ff0000' : '#00aa00'}">
+        <b>Nombre Ciudad:</b> {{ciudad.nombre}} - <b>Pais:</b> {{ciudad.pais}}
+      </div>
+    </li>
+  </ul>
+  
+  <p><b>ngClass (la ciudades que sean de España le cambiamos su clase)</b></p>
+  <ul>
+    <li *ngFor="let ciudad of ciudades; let i = index">
+      <div [ngClass]="ciudad.pais === 'España' ? 'otraClase' : ''">
+        <b>{{i}} - Nombre Ciudad:</b> {{ciudad.nombre}} - <b>Pais:</b> {{ciudad.pais}}
+      </div>
+    </li> 
+</ul>
+<div>
+<hr>
+
+
+<h1>Pipes</h1>
+<p>
+Esto es un ejemplo de pipe {{ciudades[0].nombre | uppercase| entrecomillar}}
+</p>
+</div>
